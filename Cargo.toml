@@ -1,0 +1,4 @@
+# Everything can build natively on linux with `cargo build`
+# But we  recommend using a container (e.g. docker) to allow easier cleanup of the dependencies the build scripts install.
+[workspace]
+members = ["one","two","three"]
