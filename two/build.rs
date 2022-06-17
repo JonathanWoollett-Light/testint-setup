@@ -1,19 +1,12 @@
+const PACKAGES: [&str; 5] = [
+    "binutils-dev",
+    "clang",
+    "cmake",
+    "build-essential",
+    "zlib1g-dev",
+];
+
 // Each crate can be built indepedant of the workspace and natively with `cargo build`
 fn main() {
-    std::process::Command::new("sudo")
-        .args(["apt-get", "update"])
-        .output()
-        .unwrap();
-    std::process::Command::new("sudo")
-        .args([
-            "apt-get",
-            "install",
-            "binutils-dev",
-            "clang",
-            "cmake",
-            "build-essential",
-            "zlib1g-dev",
-        ])
-        .output()
-        .unwrap();
+    build_util::install(&PACKAGES);
 }
