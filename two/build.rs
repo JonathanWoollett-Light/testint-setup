@@ -1,6 +1,6 @@
-const PACKAGES: [&str; 5] = [
-    "binutils-dev",
-    "clang",
+const PACKAGES: [&str; 3] = [
+    // "binutils-dev",
+    // "clang",
     "cmake",
     "build-essential",
     "zlib1g-dev",

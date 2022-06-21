@@ -1,3 +1,4 @@
 # By default we don't install system dependencies
 [env]
 INSTALL = "false"
+CARGO_HTTP_CHECK_REVOKE=false

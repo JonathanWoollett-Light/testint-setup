@@ -1,5 +1,5 @@
 /// By default we do not install system dependencies.
-/// In application this would be some enviroment variables e.g. `FIRECRACKER_DEPENDENCIES` with possible values like `install` or `check` and `skip`
+/// For autoamtion we should use an enviroment variable.
 const INSTALL: bool = false;
 
 pub fn install(packages: &[&str]) {
