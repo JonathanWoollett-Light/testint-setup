@@ -1,9 +1,10 @@
 /// By default we do not install system dependencies.
-/// For autoamtion we should use an enviroment variable.
+/// In application this would be an enviroment variable.
 const INSTALL: bool = false;
 
 pub fn install(packages: &[&str]) {
     if INSTALL {
+        // Updates `apt-get`.
         std::process::Command::new("sudo")
             .args(
                 ["apt-get", "update"]
@@ -13,6 +14,7 @@ pub fn install(packages: &[&str]) {
             )
             .output()
             .unwrap();
+        // Installs dependencies from `apt-get`.
         std::process::Command::new("sudo")
             .args(
                 ["apt-get", "install"]
@@ -23,6 +25,7 @@ pub fn install(packages: &[&str]) {
             .output()
             .unwrap();
     } else {
+        // Checks dependencies with `apt-cache`.
         let output = std::process::Command::new("apt-cache")
             .args(
                 ["--quiet=0", "policy"]
@@ -32,6 +35,7 @@ pub fn install(packages: &[&str]) {
             )
             .output()
             .unwrap();
+        // Prints each missing dependency.
         for missing in std::str::from_utf8(&output.stderr)
             .unwrap()
             .trim()
@@ -41,6 +45,7 @@ pub fn install(packages: &[&str]) {
             // avaible.
             eprintln!("{}", missing);
         }
+        // Exits with non-zero error code if any depdencies where missing.
         if !output.stderr.is_empty() {
             std::process::exit(1)
         }
